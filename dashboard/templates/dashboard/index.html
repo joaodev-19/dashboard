@@ -59,6 +59,18 @@
 <body>
     <div class="container mt-5">
         <h2 class="mb-4 text-center">Task Pulse Dashboard</h2>
+        <div class="d-flex justify-content-center">
+            {% if user.is_authenticated %}
+                <h4 class="mb-4 text-center text-muted">Olá, <strong>{{ user.username }}</strong></h3>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Sair</button>
+                </form>
+            {% else %}
+                <h4 class="mb-4 text-center">Não logado</h3>
+                <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Entrar</a>
+            {% endif %}
+        </div>
 
         <!-- Dashboard de Status (Uma linha completa) -->
         <div class="row mb-4">
